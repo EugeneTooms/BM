@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons left>
+          <button ion-button icon-only (click)="Settings()"><ion-icon name="cog"></ion-icon></button>
+      </ion-buttons>
+    <ion-buttons right>
+        <button ion-button (click)="RunReport()" color="secondary">Run Report</button>
+    </ion-buttons>
+    <!-- <ion-buttons right>
+      <button ion-button icon-only (click)="onLoadNovaLokacija()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons> -->
+    <ion-title>
+      Server : {{server}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let lokacija of lokacije" (click)="LokacijaSelect(lokacija)">{{lokacija.naziv}}</button>
+  </ion-list>
+</ion-content>

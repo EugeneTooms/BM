@@ -1,0 +1,96 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{artikal.naziv}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+          <ion-card>
+              <img src="assets/imgs/{{artikal.img}}"/>
+              <ion-card-content>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+      <ion-col col-6>
+          <ion-card *ngIf="narudzba=='paket'">
+              <ion-card-content>
+                <ion-row>
+                    <button ion-button icon-only color="secondary" (click)="PlusPaket()">
+                        <ion-icon name="add"></ion-icon>
+                      </button>
+                </ion-row>
+                <ion-row>
+                  <ion-item>
+                    <ion-input type="number" clearInput [(ngModel)]="artikal.paketi"></ion-input>
+                  </ion-item>
+                </ion-row>
+                <ion-row>
+                    <button ion-button icon-only color="danger" (click)="MinusPaket()"> 
+                        <ion-icon name="remove"></ion-icon>
+                      </button>
+                </ion-row>
+              </ion-card-content>
+          </ion-card>
+          <ion-card *ngIf="narudzba=='boca'">
+            <ion-card-content>
+              <ion-row>
+                  <button ion-button icon-only color="secondary" (click)="PlusBoca()">
+                      <ion-icon name="add"></ion-icon>
+                    </button>
+              </ion-row>
+              <ion-row>
+                <ion-item>
+                  <ion-input type="number" clearInput [(ngModel)]="artikal.boce"></ion-input>
+                </ion-item>
+              </ion-row>
+              <ion-row>
+                  <button ion-button icon-only color="danger" (click)="MinusBoca()"> 
+                      <ion-icon name="remove"></ion-icon>
+                    </button>
+              </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-item item-start clear small>
+            <ion-label>Boce ili Paketi</ion-label>
+            <ion-select  [(ngModel)]="narudzba">
+              <ion-option value="paket">Paket</ion-option> 
+              <ion-option value="boca">Boca</ion-option> 
+          </ion-select>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+        <ion-col>
+            <ion-item item-start clear small>
+              <ion-label>Veličina Paketa:</ion-label>
+              <ion-select  [(ngModel)]="selectedPaketi">
+                <ion-option *ngFor=" let box of artikal.boxes" value="{{box.id}}">{{box.naziv}}</ion-option> 
+            </ion-select>
+            </ion-item>
+          </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-item item-start clear small>
+              <ion-label>Zapremnina Boce:</ion-label>
+              <ion-select  [(ngModel)]="artikal.zapremnine_id">
+                <ion-option *ngFor=" let zap of artikal.zapremnina" value="{{zap.id}}">{{zap.naziv}}</ion-option> 
+            </ion-select>
+            </ion-item>
+          </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <button ion-button (click)="Add()" full>Dodaj za Narudžbu</button>
+    </ion-toolbar>
+</ion-footer>

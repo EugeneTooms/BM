@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Dodaj Lokcaiju</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="onDodajLokaciju(f.value)" #f="ngForm">
+    <ion-item>
+      <ion-label>Naziv</ion-label>
+      <ion-input type="text" name="naziv" ngModel required></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" [disabled]="!f.valid">Dodaj Lokaciju</button>
+  </form>
+</ion-content>

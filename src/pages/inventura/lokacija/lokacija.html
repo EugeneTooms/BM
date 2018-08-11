@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{lokacija.naziv}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  padding>
+    <ion-list *ngIf="lokacije">
+        <button ion-item *ngFor="let lokacija of lokacije" (click)="LokacijaSelect(lokacija)">{{lokacija.naziv}}</button>
+      </ion-list>
+    <ion-list *ngIf="artikli">
+        <button ion-item *ngFor="let artikal of artikli; let i = index" (click)="ArtikalSelect(i+1)">
+          {{artikal.naziv}}
+          <ion-badge item-end>{{artikal.kolicina}}</ion-badge>
+        </button>
+    </ion-list>
+</ion-content>

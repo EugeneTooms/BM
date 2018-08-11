@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button ion-button menuToggle icon-only item-left><ion-icon name="menu"></ion-icon></button>
+      <ion-buttons right>
+          <ion-badge color="secondary">{{orders.length}}</ion-badge>
+          <ion-icon name="basket"></ion-icon>
+      </ion-buttons>
+    <ion-title>Narudžbe</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input type="text" (input)='onInputParam()' [(ngModel)]="searchParam" clearInput></ion-input>
+  </ion-item>
+  <ion-list *ngIf="searchParam != '' ">
+    <ion-item *ngFor="let artikal of displayArtikli; let i = index">
+      <ion-avatar item-start>
+        <img src="assets/imgs/{{artikal.img}}">
+      </ion-avatar>
+      <ion-badge item-start>{{artikal.kolicina}}</ion-badge>
+      {{artikal.naziv}}
+      <button ion-button outline item-end (click)="Order(artikal)">Narući</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <button ion-button (click)="Finnsih()"  full>Završi Narudžbu</button>
+    </ion-toolbar>
+</ion-footer>

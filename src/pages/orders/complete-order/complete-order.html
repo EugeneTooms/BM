@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dovrši Narudžbu</ion-title>
+    <ion-buttons right>
+        <ion-badge color="secondary">{{orders.length}}</ion-badge>
+        <ion-icon name="basket"></ion-icon>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let order of orders; let i = index">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/{{order.img}}">
+      </ion-thumbnail>
+      <h2>{{order.naziv}}</h2>
+      <p>Zapremnina : {{order.kalo}}</p>
+      <p>Paketa : {{order.boxes}}</p>
+      <p>Boca : {{order.boce}}</p>
+      <button icon-only color="danger" ion-button clear item-end (click)="RemoveItem(order)" ><ion-icon name="close"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <button ion-button (click)="Order()" full>Naruči</button>
+    </ion-toolbar>
+</ion-footer>

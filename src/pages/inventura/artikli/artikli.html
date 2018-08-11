@@ -1,0 +1,97 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{odabraniArtikal?.naziv}}</ion-title>
+    <ion-buttons right>
+        <ion-badge color="secondary" style="font-size:2.3rem">{{odabraniArtikal?.kolicina}}</ion-badge>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+    <ion-slides style="height : 50%" (ionSlideDidChange)="slideChanged()">
+        <ion-slide *ngFor="let artikal of artikli">
+            <ion-card class="col">
+              <img class="slika" *ngIf="!artikal.img" style="display: inline-block;max-width : 50%;max-height : 50%" src="assets/imgs/boca.jpg">
+              <img class="slika" *ngIf="artikal.img" style="display: inline-block;max-width : 50%;max-height : 50%"  src="assets/imgs/{{artikal.img}}">
+              <!-- <ion-item>
+                <ion-label>Kolicina : {{artikal.kolicina}}</ion-label>
+              </ion-item> -->
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+        <div class="container" >
+            <div class="calc-body" style="height : 40%">
+              <div class="calc-button-row">
+                  <div class="calc-button">
+                    <div animates #animation7="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('7');animation7.start({type: 'shake', duration: '500'})">7</button>
+                    </div>
+                  </div>
+                  <div class="calc-button">
+                    <div animates #animation8="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('8');animation8.start({type: 'rubberBand', duration: '500'})">8</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation9="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('9');animation9.start({type: 'rubberBand', duration: '500'})">9</button>
+                    </div>
+                  </div>
+              </div>
+              <div class="calc-button-row">
+                  <div class="calc-button" >
+                    <div animates #animation4="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('4');animation4.start({type: 'rubberBand', duration: '500'})">4</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation5="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('5');animation5.start({type: 'rubberBand', duration: '500'})">5</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation6="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('6');animation6.start({type: 'rubberBand', duration: '500'})">6</button>
+                    </div>
+                  </div>
+              </div>
+              <div class="calc-button-row">
+                  <div class="calc-button" >
+                    <div animates #animation1="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('1');animation1.start({type: 'rubberBand', duration: '500'})">1</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation2="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('2');animation2.start({type: 'rubberBand', duration: '500'})">2</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation3="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('3');animation3.start({type: 'rubberBand', duration: '500'})">3</button>
+                    </div>
+                  </div>
+              </div>
+              <div class="calc-button-row">
+                  <div class="calc-button" >
+                    <div animates #animation="animates">
+                      <button ion-button block color="light" (click)="btnClicked('.');animation.start({type: 'rubberBand', duration: '500'})">.</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animation0="animates">
+                      <button ion-button block color="secondary" (click)="btnClicked('0');animation0.start({type: 'rubberBand', duration: '500'})">0</button>
+                    </div>
+                  </div>
+                  <div class="calc-button" >
+                    <div animates #animationC="animates">
+                      <button ion-button block color="danger" (click)="btnClicked('c');animationC.start({type: 'rubberBand', duration: '500'})">C</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings : {{server}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="onDodajServer(f.value)" #f="ngForm">
+        <ion-item>
+            <ion-label color="primary" stacked>Ime ili IP adresa Servera</ion-label>
+            <ion-input type="text" name="naziv" placeholder="{{server}}" ngModel required></ion-input>
+          </ion-item>
+      <button ion-button block type="submit" color="secondary" [disabled]="!f.valid">Spremi</button>
+    </form>
+    <button ion-button block color="danger" (click)="SyncWithServer()">Sinkroniziraj sa serverom</button>
+</ion-content>
+
+  
+  

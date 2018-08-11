@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button menuToggle icon-only item-left><ion-icon name="menu"></ion-icon></button>
+      <ion-title>Primke</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <button *ngFor="let primka of primke; let i = index" ion-item  (click)="OrderSelect(primka)">
+          {{primka.supplier}}
+        </button>
+        <button ion-item  (click)="OrderSelect()">
+          Narudžba Perković
+        </button>
+        <button ion-item  (click)="OrderSelect()">
+          Narudžba Perković
+        </button>
+        <button ion-item  (click)="OrderSelect()">
+          Narudžba Perković
+        </button>
+    </ion-list>
+
+</ion-content>

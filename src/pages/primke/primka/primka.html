@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Narudžba {{primka.supplier}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <ion-label>Broj : </ion-label>
+      <ion-input type="text" [(ngModel)]="primka.number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Datum : </ion-label>
+      <ion-input type="date"></ion-input>
+    </ion-item>
+  <ion-list>
+      <ion-card *ngFor="let artikal of primka.artikli; let i = index">
+          <ion-item [ngClass]="artikal.checked == true ? 'yes': 'nope'">
+            <ion-avatar item-start>
+              <img src="assets/imgs/{{artikal.img_src}}">
+            </ion-avatar>
+            <ion-label>{{artikal.article_name}}</ion-label>
+            <ion-checkbox item-end [(ngModel)]="artikal.checked"></ion-checkbox>
+          </ion-item>        
+          <ion-row>
+            <!-- <ion-col>
+              <ion-item item-start clear small>
+                <ion-label>{{artikal.zapremnine_naziv}}</ion-label>
+                <ion-select  [(ngModel)]="artikal.zapremnine_id">
+                  <ion-option *ngFor=" let zap of artikal.zapremnine" value="{{zap.id}}">{{zap.naziv}}</ion-option> 
+              </ion-select>
+              </ion-item>
+            </ion-col> -->
+            <ion-col>
+              <button ion-button icon-start clear small (click)="presentPrompt(i ,'gajbe')">
+                <ion-icon name="cube"></ion-icon>
+                <div>{{artikal.paketi_kol}}</div>
+              </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-start clear small (click)="presentPrompt(i, 'boce')">
+                  <ion-icon name="wine"></ion-icon>
+                  <div>{{artikal.boce_kol}}</div>
+                </button>
+              </ion-col>
+          </ion-row>
+        </ion-card>
+  </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <button ion-button (click)="Receive()" full>Zaprimi Primku</button>
+    </ion-toolbar>
+</ion-footer>
