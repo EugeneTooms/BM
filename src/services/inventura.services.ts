@@ -123,7 +123,7 @@ export class InventuraService{
         return this.storage.get('server')
             .then(
                 (server) => {
-                    this.server = server == null ? '192.168.1.7' : server;
+                    this.server = server == null ? '192.168.0.7' : server;
                     return this.server;
                 }
             );
