@@ -31,7 +31,8 @@ export class ArticleOrderPage {
     this.artikalZaNaruciti = new Order(
       this.artikal.id,
       this.artikal.naziv,
-      this.artikal.kalo,
+      this.artikal.qty,
+      this.artikal.box_qty,
       this.artikal.paketi,
       this.artikal.boce,
       this.artikal.img,

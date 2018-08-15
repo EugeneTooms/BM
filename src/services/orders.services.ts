@@ -85,10 +85,11 @@ export class OrdersService{
                     artikal.id, 
                     artikal.name, 
                     artikal.kolicina == null ? 0 : artikal.amount,
-                    artikal.dozvoljeni_kalo,
+                    artikal.box_qty,
+                    artikal.qty,
                     0,
                     0,
-                    artikal.img_src,
+                    artikal.img_src == null ? 'boca.jpg' : artikal.img_src,
                     artikal.supplier_id));
 
             }

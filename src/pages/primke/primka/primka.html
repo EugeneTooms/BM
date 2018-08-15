@@ -50,6 +50,6 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-      <button ion-button (click)="Receive()" full>Zaprimi Primku</button>
+      <button *ngIf="primka.number" ion-button (click)="Receive()" full>Zaprimi Primku</button>
     </ion-toolbar>
 </ion-footer>

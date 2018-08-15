@@ -64,6 +64,24 @@ export class PrimkaPage {
     )
   }
   Receive(){
+    let artikli = this.primka.artikli.filter(x=>(x['checked']==true));
+    if (artikli.length == 0){
+      let alert = this.alertCtrl.create({
+        title: 'Nema artikala?',
+        message: 'Primka bez artikala je nevaljana',
+        buttons: [
+          {
+            text: 'Odustajem',
+            handler: () => {
+              
+            }
+          }
+        ]
+      });
+  
+      alert.present();
+      
+    }else{
     let alert = this.alertCtrl.create({
       title: 'Zapiši primku?',
       message: 'Zapiši primku u bazu podataka',
@@ -93,6 +111,7 @@ export class PrimkaPage {
     });
 
     alert.present();
+    }
   }
 
   presentPrompt(i : number,mjera : string) {

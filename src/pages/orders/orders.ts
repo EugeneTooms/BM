@@ -24,6 +24,9 @@ export class OrdersPage {
               private ordersService: OrdersService,
               private inventuraService: InventuraService,
               private alertCtrl : AlertController) {
+
+  }
+  ionViewDidLoad() {
     this.inventuraService.GetServer().then(
       (server)=>{
           this.server = server;
@@ -37,20 +40,18 @@ export class OrdersPage {
       }
     )
   }
-  ionViewDidLoad() {
+  ionViewDidEnter(){
     this.ordersService.GetArtikle()
     .then(
       (artikli) => {
         this.orderArtikli = artikli;
       }
-    )
-  }
-  ionViewDidEnter(){
+    );
     this.ordersService.getOrders().then(
       (orders) => {
         this.orders = orders;
       }
-    )
+    );
   }
   onInputParam(): void{
     this.displayArtikli = this.orderArtikli.filter(x=>(x['naziv'].toLowerCase().includes(this.searchParam)));
@@ -58,7 +59,7 @@ export class OrdersPage {
   Order(selected : OrderArtikal){
     console.log(this.orders);
     console.log(selected.id);
-    if(selected.kalo == null){
+    if(selected.qty == null){
       let alert = this.alertCtrl.create({
       title: 'Nema Zapremninu',
       message: 'Artikal nema unesenu Zapremninu<br>Ne može se naručiti preko mobilne aplikacije',
