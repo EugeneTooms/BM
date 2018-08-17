@@ -19,21 +19,23 @@ export class PrimkePage {
               private inventuraService : InventuraService) {
 
   }
+  getPrimke(){
+    this.primkeService.GetPrimke().then(
+      (primke) => {this.primke = primke;}
+    );
+  }
   ionViewDidLoad(){
     this.inventuraService.GetServer().then(
       (server)=> {
         this.server=server;
         this.primkeService.syncPrimke(server);
-        this.primkeService.GetPrimke().then(
-          (primke) => {this.primke = primke;}
-        )
+        this.getPrimke();
       })
   }
   ionViewDidEnter() {
-    this.primkeService.GetPrimke().then(
-      (primke) => {this.primke = primke;}
-    )
+    this.getPrimke();
   }
+
   OrderSelect(selected : Primka){
     this.navCtrl.push(PrimkaPage, {primka : selected})
   } 

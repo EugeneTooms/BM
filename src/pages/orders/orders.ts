@@ -14,7 +14,7 @@ import { Order } from '../../models/order.model';
   templateUrl: 'orders.html',
 })
 export class OrdersPage {
-  @Input() orderArtikli : OrderArtikal[];
+  @Input() orderArtikli : OrderArtikal[] = [];
   displayArtikli : OrderArtikal[] = [];
   searchParam : string = '';
   server : string;
@@ -31,12 +31,13 @@ export class OrdersPage {
       (server)=>{
           this.server = server;
           this.ordersService.syncArtikle(server);
-          // this.ordersService.GetArtikle()
-          // .then(
-          //   (artikli) => {
-          //     this.orderArtikli = artikli;
-          //   }
-          // )
+          this.ordersService.GetArtikle()
+          .then(
+            (artikli) => {
+              this.orderArtikli = artikli;
+              this.displayArtikli = JSON.parse(JSON.stringify(artikli));
+            }
+          )
       }
     )
   }
@@ -45,6 +46,7 @@ export class OrdersPage {
     .then(
       (artikli) => {
         this.orderArtikli = artikli;
+        this.displayArtikli = JSON.parse(JSON.stringify(artikli));
       }
     );
     this.ordersService.getOrders().then(
@@ -53,12 +55,14 @@ export class OrdersPage {
       }
     );
   }
-  onInputParam(): void{
-    this.displayArtikli = this.orderArtikli.filter(x=>(x['naziv'].toLowerCase().includes(this.searchParam)));
+  onInputParam(ev:any){
+    if(this.searchParam == ''){
+      this.displayArtikli = this.orderArtikli;
+    }else{
+      this.displayArtikli = this.orderArtikli.filter(x=>{ return x.naziv.toLowerCase().includes(this.searchParam.toLowerCase())});
+    }
   }
   Order(selected : OrderArtikal){
-    console.log(this.orders);
-    console.log(selected.id);
     if(selected.qty == null){
       let alert = this.alertCtrl.create({
       title: 'Nema Zapremninu',

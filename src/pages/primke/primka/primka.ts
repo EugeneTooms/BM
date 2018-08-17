@@ -12,8 +12,6 @@ import { InventuraService } from '../../../services/inventura.services';
 })
 export class PrimkaPage {
   @Input() primka : Primka
-  gajbe : number = 2 ;
-  boce : number = 13;
   checked : boolean;
   server : string;
   constructor(public navCtrl: NavController, 
@@ -23,6 +21,7 @@ export class PrimkaPage {
               private inventuraService : InventuraService,
               private toastCtrl: ToastController) {
                this.primka = this.navParams.get('primka');
+
   }
   presentError(err) {
     if(!err.title){
@@ -57,13 +56,13 @@ export class PrimkaPage {
     toast.present();
   }
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad PrimkaPage');
-    // console.log(this.primka);
     this.inventuraService.GetServer().then(
       (server) => {this.server = server;}
     )
+
   }
   Receive(){
+    
     let artikli = this.primka.artikli.filter(x=>(x['checked']==true));
     if (artikli.length == 0){
       let alert = this.alertCtrl.create({
@@ -95,16 +94,17 @@ export class PrimkaPage {
         {
           text: 'Do IT!!!',
           handler: () => {
-            this.primka.artikli = this.primka.artikli.filter(x=>(x['checked']==true));
+            this.primka.artikli = artikli;
             this.primkeService.SavePrimka(this.server,this.primka).subscribe(
               (data)=>{
                 let poruka = {};
                 poruka['message'] = 'Primka zapisana';
                 this.presentToast(poruka, true);
                 this.primkeService.RemoveFromPrimke(this.primka);
+                this.navCtrl.pop();
               },
               (error)=>{this.presentError(error);});
-            this.navCtrl.pop();
+            
           }
         }
       ]
@@ -114,7 +114,7 @@ export class PrimkaPage {
     }
   }
 
-  presentPrompt(i : number,mjera : string) {
+  presentPrompt(art ,mjera : string) {
     let alert = this.alertCtrl.create({
       title: 'Unesi količinu',
       inputs: [
@@ -136,10 +136,10 @@ export class PrimkaPage {
           text: 'OK',
           handler: data => {
             if (mjera == 'gajbe'){
-              this.primka.artikli[i].paketi_kol = +data.Number;
+              art.paketi_kol= +data.Number;
             }
             else if(mjera == 'boce'){
-              this.primka.artikli[i].boce_kol = +data.Number;
+              art.boce_kol= +data.Number;
             }
 
           }
